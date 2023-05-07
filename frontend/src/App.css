@@ -1,0 +1,131 @@
+.App {
+  overflow: hidden;
+}
+
+/* control the space before the number marker for items in ordered list */
+ol, ol li { margin-left: 0; padding-left: 0; }
+ol { margin-left: 2em; }
+
+.top-pane {
+  border: 2px solid blue;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  gap: 5px;
+}
+
+.text-input-div {
+  display: flex;
+  border: 1px solid blue;
+  border-radius: .5rem;
+  align-items: center;
+  padding: .5rem 1rem;
+}
+
+.text-input-field {
+  border: 0;
+  font-size: 100%;
+}
+
+.button-div {
+  display: flex;
+  margin-left: 20px;
+}
+
+.button-style {
+  font-size: 1.2rem;
+}
+
+.tab-button-div {
+  display: flex;
+  border-radius: .5rem;
+  align-items: center;
+  padding: .5rem 1rem;
+  margin-left: 100px;
+}
+
+.modal-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  z-index: 9999;
+}
+
+.bottom-pane {
+  border: 2px solid blue;
+  height: 88vh;
+  margin: 5px;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-left-subpane {
+  border: 1px solid blue;
+  width: 25%;
+  height: 86vh;
+  margin: 5px;
+  gap: 5px;
+  overflow-y: scroll;
+}
+
+.bottom-right-subpane {
+  border: 1px solid blue;
+  width: 75%;
+  height: 86vh;
+  margin: 5px;
+  gap: 5px;
+  overflow-y: scroll;
+}
+
+.job-description-div {
+  margin: 5px;
+  gap: 5px;
+}
+
+.server-logs-div {
+  height: 80vh;
+  margin: 5px;
+  gap: 5px;
+  overflow-y: scroll;
+  overflow-wrap: break-word;
+}
+
+.no-border-div {
+  border: none;
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+
+.tab-button {
+  background-color: #f1f1f1;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  flex: 1;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button:hover {
+  background-color: #ddd;
+}
+
+.tab-button.active {
+  background-color: #ccc;
+}
+
+.tab-content {
+  padding: 10px;
+  border: 1px solid #ccc;
+}

@@ -1,0 +1,10 @@
+__pycache__
+
+/bin
+/data/
+/exp
+/temp
+
+geckodriver.log
+
+/resources
