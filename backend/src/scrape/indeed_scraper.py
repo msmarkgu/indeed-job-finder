@@ -16,10 +16,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from src.backend.utils.common_utils import CommonUtils
-from src.backend.scrape.indeed_job_data import IndeedJobData
-from src.backend.scrape.scrape_helper import ScrapeHelper
-from src.backend.scrape.scrape_request import ScrapeRequest
+from src.utils.common_utils import CommonUtils
+from src.scrape.indeed_job_data import IndeedJobData
+from src.scrape.scrape_helper import ScrapeHelper
+from src.scrape.scrape_request import ScrapeRequest
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -43,24 +43,42 @@ class IndeedScraper:
         # e.g., 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0'
         self.user_agent   = os.getenv("BROWSER_USER_AGENT")
 
+        self.cookie_file = os.getenv("INDEED_COOKIE_FILE")
+
         self.logger.info(f"browser_path={self.browser_path}")
         self.logger.info(f"driver_path={self.driver_path}")
 
         self.url_template=r'https://www.indeed.com/jobs?q={}&l={}&sort={}&fromage={}&radius={}&sc={}&vjk={}&filter=0'  # Note: "&filter=0" will prevent Indeed from dynamically removing job postings during search
 
-        self.driver = self.create_driver(headless)
+        self.driver = self.create_driver(headless=headless)
 
     def create_driver(self, headless=False):
         options = webdriver.FirefoxOptions()
         options.headless = headless
         options.add_argument("--disable-notifications")
-        options.add_argument("-private")
+        #options.add_argument("-private")
         options.add_argument(self.user_agent)
         options.binary_location = self.browser_path
 
-        service = Service(self.driver_path)
+        options.add_argument("--user-data-dir=/home/bgu/.mozilla/firefox/e3zfmwqt.default-release-2")
+
+        # firefox_services = Service(executable_path='firefoxdriver', port=3000, service_args=['--marionette-port', '2828', '--connect-existing'])
+
+        service = Service(executable_path=self.driver_path)
 
         driver = webdriver.Firefox(service=service, options=options)
+
+        '''
+        self.logger.info(f"load cookie_file={self.cookie_file}")
+        with open(self.cookie_file, "r") as f:
+            cookies = eval(f.read())
+
+        for cookie in cookies:
+            self.logger(f"add cookie: {cookie}")
+            driver.add_cookie(cookie)
+        '''
+
+        driver.get("https://www.indeed.com")
 
         driver.maximize_window()
         driver.implicitly_wait(10)
@@ -345,7 +363,7 @@ class IndeedScraper:
 
         out_file = ScrapeHelper.get_filename_for_location(location)
 
-        out_dir = os.path.join(CUR_DIR, f"../../../data/scrape_result/{date_str}")
+        out_dir = os.path.join(CUR_DIR, f"../../data/scrape_result/{date_str}")
         out_path = os.path.join(out_dir, out_file)
 
         message = ""
@@ -354,7 +372,7 @@ class IndeedScraper:
 
             log_file = out_path.replace(".json", ".log")
 
-            scraper = IndeedScraper(headless=True, log_file=log_file)
+            scraper = IndeedScraper(log_level=logging.INFO, headless=True, log_file=log_file)
 
             job_count = scraper.do_search(what_job, location, last_days, max_page, out_path, vjk_key)
             print(f"location = {location}, jobs_found = {job_count}")

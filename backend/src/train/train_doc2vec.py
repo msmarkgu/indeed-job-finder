@@ -9,7 +9,7 @@ import logging
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
-from src.backend.utils.nlp_utils import NlpUtils
+from src.utils.nlp_utils import NlpUtils
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 

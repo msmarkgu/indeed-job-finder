@@ -59,7 +59,7 @@ ol { margin-left: 2em; }
 
 .bottom-pane {
   border: 2px solid blue;
-  height: 88vh;
+  height: 86vh;
   margin: 5px;
   gap: 5px;
   display: flex;

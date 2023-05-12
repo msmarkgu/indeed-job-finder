@@ -9,11 +9,11 @@ import typing
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 TODAY = datetime.datetime.today().strftime('%Y-%m-%d')
 
-from src.backend.scrape.indeed_job_data import IndeedJobData
+from src.scrape.indeed_job_data import IndeedJobData
 
 class ScrapeHelper:
 
-    DATA_DIR = os.path.join(CUR_DIR, f"../../../data/scrape_result")
+    DATA_DIR = os.path.join(CUR_DIR, f"../../data/scrape_result")
 
     # e.g., location="Seattle, WA", filename="job_data_seattle__wa.json"
     @staticmethod

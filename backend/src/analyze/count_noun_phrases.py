@@ -7,8 +7,8 @@ import time
 import pysbd
 import spacy
 
-from src.backend.parse.parse_jd_sections import JobDescriptionParser
-from src.backend.utils.html_utils import HtmlUtils
+from src.parse.parse_jd_sections import JobDescriptionParser
+from src.utils.html_utils import HtmlUtils
 
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))

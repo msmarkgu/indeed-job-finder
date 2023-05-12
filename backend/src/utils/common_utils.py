@@ -25,7 +25,7 @@ class CommonUtils:
                 os.remove(log_file)
             else:
                 folder_path = os.path.dirname(log_file)
-                if not os.path.exists:
+                if not os.path.exists(folder_path):
                     os.makedirs(folder_path)
                 with open(log_file, 'w') as fp:
                     fp.write("")

@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from src.backend.webapi.router import api_router
+from src.webapi.router import api_router
 
 origins = ["*"]
 app = FastAPI()

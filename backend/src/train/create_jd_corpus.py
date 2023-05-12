@@ -4,8 +4,8 @@ import re
 import sys
 import typing
 
-from src.backend.train.jd_text_extractor import JobDescTextExtractor
-from src.backend.utils.nlp_utils import NlpUtils
+from src.train.jd_text_extractor import JobDescTextExtractor
+from src.utils.nlp_utils import NlpUtils
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 

@@ -3,23 +3,23 @@ import logging
 import os
 import sys
 
-from src.backend.scrape.indeed_scraper import IndeedScraper
-from src.backend.scrape.scrape_helper import ScrapeHelper
+from src.scrape.indeed_scraper import IndeedScraper
+from src.scrape.scrape_helper import ScrapeHelper
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 TODAY = datetime.datetime.today().strftime('%Y-%m-%d')
 
 def main(argv):
-    out_dir = os.path.join(CUR_DIR, f"../../../data/scrape_result/{TODAY}")
+    out_dir = os.path.join(CUR_DIR, f"../../data/scrape_result/{TODAY}")
 
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
 
     what_job = 'Senior Software Engineer'
-    last_days = 1
-    max_page = 1
+    last_days = 14
+    max_page = 10
     vjk_key  = '' #'8d154102de0392d0'
-    headless = True
+    headless = False
 
     location = 'Seattle, WA'
     #location = 'New York City, NY'

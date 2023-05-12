@@ -1,17 +1,18 @@
 import datetime
+import logging
 import os
 import sys
 import time
 
 
-from src.backend.scrape.indeed_scraper import IndeedScraper
-from src.backend.scrape.scrape_helper import ScrapeHelper
+from src.scrape.indeed_scraper import IndeedScraper
+from src.scrape.scrape_helper import ScrapeHelper
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 TODAY = datetime.today().strftime('%Y-%m-%d')
 
 def main(argv):
-    out_dir = os.path.join(CUR_DIR, f"../../../data/scrape_result/{TODAY}")
+    out_dir = os.path.join(CUR_DIR, f"../../data/scrape_result/{TODAY}")
 
     if not os.path.exists(out_dir):
         os.makedir(out_dir)
@@ -25,8 +26,7 @@ def main(argv):
     last_days = 14
     max_page = 10
     vjk_key  = '917f3457d7c513fb'
-
-    scraper = IndeedScraper()
+    headless = False
 
     for location in locations:
         location = location.strip()
@@ -40,13 +40,20 @@ def main(argv):
 
         print(f'location = {location}, out_file = {out_file}')
 
+        log_file = out_path.replace(".json", ".log")
+
+        print(f'log_file = {log_file}')
+
+        scraper = IndeedScraper(log_level=logging.DEBUG, headless=headless, log_file=log_file)
+
         job_count = scraper.do_search(what_job, location, last_days, max_page, out_path, vjk_key)
 
         print(f"location = {location}, jobs_found = {job_count}")
 
+        scraper.dispose()
+
         time.sleep(10)  # pause 10 sec between locations
 
-    scraper.dispose()
 
 if __name__ == "__main__":
     main(sys.argv)

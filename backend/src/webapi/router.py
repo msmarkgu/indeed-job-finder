@@ -7,12 +7,12 @@ from fastapi import APIRouter, Request, BackgroundTasks, HTTPException, Header, 
 from fastapi.responses import FileResponse, StreamingResponse
 from starlette.responses import Response, JSONResponse
 
-from src.backend.scrape.indeed_scraper import IndeedScraper
-from src.backend.scrape.scrape_helper import ScrapeHelper
-from src.backend.scrape.scrape_request import ScrapeRequest
+from src.scrape.indeed_scraper import IndeedScraper
+from src.scrape.scrape_helper import ScrapeHelper
+from src.scrape.scrape_request import ScrapeRequest
 
-from src.backend.webapi.job_item_data import JobItemData
-from src.backend.webapi.job_logs_data import JobLogsData
+from src.webapi.job_item_data import JobItemData
+from src.webapi.job_logs_data import JobLogsData
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 CUR_FILE = os.path.basename(__file__)

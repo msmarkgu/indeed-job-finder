@@ -3,7 +3,7 @@ import os
 import re
 import sys
 
-from src.backend.parse.jd_desc_parser import JobDescriptionParser
+from src.parse.jd_desc_parser import JobDescriptionParser
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 

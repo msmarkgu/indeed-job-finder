@@ -4,8 +4,8 @@ import os
 import re
 import sys
 
-from src.backend.utils.common_utils import CommonUtils
-from src.backend.utils.html_utils import HtmlUtils
+from src.utils.common_utils import CommonUtils
+from src.utils.html_utils import HtmlUtils
 
 CUR_DIR = os.path.dirname(os.path.realpath(__file__))
 
