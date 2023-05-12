@@ -7,7 +7,5 @@ __pycache__
 
 geckodriver.log
 
-/resources
-
 .ipynb_checkpoints
 *.ipynb

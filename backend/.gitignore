@@ -11,3 +11,5 @@ geckodriver.log
 
 .ipynb_checkpoints
 *.ipynb
+
+src/*.env
